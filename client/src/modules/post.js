@@ -24,6 +24,26 @@ export const createHandeler = (writer, title, maintext) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
+export const deleteHandler = (id, history) => (dispatch) => {
+  axios
+    .delete(`/api/posts/${id}`)
+    .then((res) => history.push("/"))
+    .catch((err) => console.log(err));
+};
+
+export const editHandler = (id, writer, title, maintext, history) => (
+  dispatch
+) => {
+  axios
+    .post(`/api/posts/${id}/edit`, {
+      writer: writer,
+      title: title,
+      maintext: maintext,
+    })
+    .then((res) => history.goBack())
+    .catch((err) => console.log(err));
+};
+
 const initialState = {
   posts: [],
 };

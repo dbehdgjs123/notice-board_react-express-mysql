@@ -35,6 +35,27 @@ app.get("/api/posts/:id", (req, res) => {
   connection.query(sql, [id], (error, result, fields) => {
     if (error) throw error;
     res.send(result);
+  });
+});
+app.delete("/api/posts/:id", (req, res) => {
+  const sql = "UPDATE post SET isdeleted = 1 WHERE id = ?";
+  const { id } = req.params;
+  connection.query(sql, [id], (error, result, fields) => {
+    if (error) throw error;
+    res.send(result);
+    console.log(result);
+  });
+});
+app.post("/api/posts/:id/edit", (req, res) => {
+  const sql =
+    "UPDATE post SET title = ?, writer = ?, maintext = ? WHERE id = ?";
+  const { id } = req.params;
+  const { writer, title, maintext } = req.body;
+  const params = [title, writer, maintext, id];
+  console.log(params);
+  connection.query(sql, params, (error, result, fields) => {
+    if (error) throw error;
+    res.send(result);
     console.log(result);
   });
 });

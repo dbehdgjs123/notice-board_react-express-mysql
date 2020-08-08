@@ -36,6 +36,9 @@ function Home({ history }) {
         </div>
         <div className="board-main">{postList}</div>
       </div>
+      <button onClick={() => history.push("/write")} className="board-btn">
+        글쓰기
+      </button>
     </div>
   );
 }
