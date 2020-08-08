@@ -1,0 +1,50 @@
+@mixin titleHeader {
+  text-align: center;
+  line-height: 5rem;
+}
+.board-container {
+  width: 960px;
+  height: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1rem;
+  .board-container-title {
+    font-size: 3.2rem;
+    font-weight: bold;
+  }
+  .board-container-board {
+    border-radius: 1rem;
+    background-color: rgb(39, 39, 39);
+    width: 100%;
+    height: 100%;
+    .board-header {
+      border-radius: 1rem 1rem 0px 0px;
+      display: flex;
+      height: 5rem;
+      font-weight: bold;
+      font-size: 1.3rem;
+      background-color: rgb(119, 121, 116);
+      .board-header-num {
+        @include titleHeader();
+        width: 10%;
+      }
+      .board-header-writer {
+        border-left: 2px solid rgb(114, 114, 114);
+        @include titleHeader();
+        width: 15%;
+      }
+      .board-header-title {
+        border-left: 2px solid rgb(114, 114, 114);
+        @include titleHeader();
+        width: 50%;
+      }
+      .board-header-date {
+        border-left: 2px solid rgb(114, 114, 114);
+        @include titleHeader();
+        width: 25%;
+      }
+    }
+  }
+}
