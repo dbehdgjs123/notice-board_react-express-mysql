@@ -17,6 +17,17 @@ app.get("/api/posts", (req, res) => {
   });
 });
 
+app.post("/api/posts", (req, res) => {
+  const sql = "INSERT INTO post VALUES (null, ?, ?, ?, 0, NOW())";
+  const { writer, title, maintext } = req.body;
+  const params = [title, writer, maintext];
+  connection.query(sql, params, (error, result, fields) => {
+    if (error) throw error;
+    res.send(result);
+    console.log(result);
+  });
+});
+
 app.get("/api/posts/:id", (req, res) => {
   const sql =
     "SELECT title,writer,maintext,createdDate From post WHERE isdeleted = 0 AND id = ?";

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import "./styles/writepage.scss";
-function Wrtiepage() {
+import { createHandeler } from "../modules/post";
+function Wrtiepage({ history }) {
+  const dispatch = useDispatch();
   const [inputfield, setInputfield] = useState({
     writer: "",
     title: "",
@@ -16,7 +19,8 @@ function Wrtiepage() {
   };
   const onUpload = (e) => {
     e.preventDefault();
-    //액션
+    dispatch(createHandeler(writer, title, mainText)); // 업로드 요청 read 중복되는 것 같다.
+    history.push("/"); //메인페이지로 경로변경
   };
   return (
     <div className="write-container">

@@ -13,6 +13,17 @@ export const readHandler = () => async (dispatch) => {
   });
 };
 
+export const createHandeler = (writer, title, maintext) => (dispatch) => {
+  axios
+    .post("/api/posts", {
+      writer: writer,
+      title: title,
+      maintext: maintext,
+    })
+    .then((res) => dispatch(readHandler()))
+    .catch((err) => console.log(err));
+};
+
 const initialState = {
   posts: [],
 };
